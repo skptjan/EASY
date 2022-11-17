@@ -1,10 +1,30 @@
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>$Title$</title>
+    <meta charset="UTF-8">
+    <title>Home</title>
+    <link rel="stylesheet" href="{% static 'Frontend/CSS/index.css' %}">
 </head>
 <body>
-$END$
+   <header>
+       <div>
+           <a href="/">E.A.S.Y.</a>
+           <a href="/login">Login</a>
+           <a href="/register">Register</a>
+           <a href="/plans">Plans</a>
+           <a href="/contact">Contact</a>
+           <a href="/about-us">About Us</a>
+       </div>
+   </header>
+
+    <main>
+        {% include page %}
+    </main>
+
+    <footer>
+
+    </footer>
 </body>
 </html>
