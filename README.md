@@ -1,8 +1,9 @@
 # EASY
 E.A.S.Y. (Electrical Assistant Solution for You) School project voor the Challenge. Wij proberen met onze groep een software te ontwikkelen die je kan helpen bij het energie besparen.
 
-
-# We use the following technologies:
+<br>
+ 
+## We use the following technologies:
 
 Python version 3.11
 
@@ -26,8 +27,9 @@ If you have Django package installed don't forget to enable it!
 
 Go to Settings > Select and expand Languages & Frameworks > Select Django and enable it > Apply > OK
 
+<br>
 
-# Before you start doing anything for the project.
+## Before you start doing anything for the project.
 Before you start programming you need to do a git pull request to get the latest version of the project.
 
     git pull origin main
