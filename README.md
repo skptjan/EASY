@@ -13,6 +13,8 @@ If you have python installed, you can check the version with the following comma
 
     python --version
 
+\
+\
 Django version 4.1.3 
 
     Download : pip install Django==4.1.3
