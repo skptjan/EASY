@@ -3,7 +3,7 @@
 <head>
 
     <title>Login</title>
-    <link rel="stylesheet" href="{% static 'Frontend/CSS/index.css' %}">
+    <link rel="stylesheet" href="{% static 'Frontend/CSS/registration.css' %}">
 
 </head>
 
@@ -16,12 +16,12 @@
     {% else %}
         <div class="login-box">
         <h1>Login</h1>
-        <p>{{ error }}</p>
         <form method="post">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username">
             <input type="password" name="password" placeholder="Password">
             <button type="submit" name="login">Login</button>
+            <p style="color: red">{{ error }}</p>
         </form>
     </div>
     {% endif %}
