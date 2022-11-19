@@ -7,7 +7,7 @@ E.A.S.Y. (Electrical Assistant Solution for You) School project voor the Challen
 
 Python version 3.11
 
-    Download : https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe
+    https://www.python.org/ftp/python/3.11.0/python-3.11.0-amd64.exe
 
 If you have python installed, you can check the version with the following command:
 
@@ -17,7 +17,7 @@ If you have python installed, you can check the version with the following comma
 \
 Django version 4.1.3 
 
-    Download : pip install Django==4.1.3
+    pip install Django==4.1.3
 
 If you have django installed, you can check the version with the following command:
 
@@ -26,6 +26,20 @@ If you have django installed, you can check the version with the following comma
 If you have Django package installed don't forget to enable it!
 
 Go to Settings > Select and expand Languages & Frameworks > Select Django and enable it > Apply > OK
+
+\
+\
+Git version 2.38.1.Windows.1
+
+    https://git-scm.com/download/win
+
+If you have git installed, you can check the version with the following command:
+
+    git --version
+
+If you have git installed, you can clone the repository with the following command:
+
+    git clone https://github.com/Nigel3005/EASY.git
 
 <br>
 

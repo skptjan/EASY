@@ -1,0 +1,33 @@
+/* LAPTOP VIEW */
+@media screen and (min-width: 500px) {
+    * {
+        margin: 0;
+        padding: 0;
+    }
+
+    .navbar{
+        background-color: #001eb4;
+        color: white;
+        overflow: auto;
+    }
+
+    .navbar a {
+        float: left;
+        color: white;
+        padding: 12px;
+        text-decoration: none;
+        font-size: 18px;
+    }
+
+    .navbar a:hover {
+        background-color: #0078de;
+    }
+
+    .active {
+        background-color: #008cff;
+    }
+
+    main{
+        padding : 16px;
+    }
+}
