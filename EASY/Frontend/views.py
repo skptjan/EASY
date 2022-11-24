@@ -4,8 +4,8 @@ import os
 from .forms import SignUpForm
 from .models import *
 
-
 # Create your views here.
+
 
 def indexView(request):
     data = {
