@@ -1,7 +1,7 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 import os
-from .forms import SignUpForm
+from .forms import SignUpForm, PlansForm
 from .models import *
 
 # Create your views here.
@@ -104,8 +104,28 @@ def contactView(request):
 
 
 def plansView(request):
+    # if request.method == 'POST' and 'plan' in request.POST and request.user.is_authenticated:
+    #     user = User.objects.get(username=request.user.username)
+    #     form = PlansForm(request.POST)
+    #     if form.is_valid():
+    #         user.save()
+    #         form.save()
+    #         return redirect('/dashboard')
+    # else:
+    #     form = PlansForm()
+    #     data = {
+    #         'page': 'Frontend/plans.html',
+    #         'form': form,
+    #         'error': 'Not logged in',
+    #     }
+    #
+    #     return render(request, 'Frontend/index.html', data)
+    plan = Plan.objects.all()
+
     data = {
         'page': 'Frontend/plans.html',
+        'plan': plan,
+        # 'form': form,
     }
 
     return render(request, 'Frontend/index.html', data)

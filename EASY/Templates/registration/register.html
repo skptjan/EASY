@@ -16,6 +16,7 @@
     {% else %}
         <div class="login-shop">
             <h1>Registreren</h1>
+            <br>
             <form method="POST" autocomplete="off">
                 {% csrf_token %}
                 {% for field in form %}
@@ -24,11 +25,10 @@
                         <p style="color: red">{{ error }}</p>
                     {% endfor %}
                 {% endfor %}
-            <br>
-                <br>
                 <button class="btn-login btn-primary-login btn-block-login btn-large-login">Register</button>
                 <br>
-                <a href="/login" >&#x2190; Ga terug</a>
+                <br>
+                <a href="/login" >&#x2190; Login</a>
             </form>
         </div>
     {% endif %}

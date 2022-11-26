@@ -16,6 +16,7 @@
     {% else %}
         <div class="login-box">
         <h1>Login</h1>
+        <br>
         <form method="post">
             {% csrf_token %}
             <input type="text" name="username" placeholder="Username">
@@ -23,6 +24,8 @@
             <button type="submit" name="login">Login</button>
             <p style="color: red">{{ error }}</p>
         </form>
+            <br>
+            <a href="/register" >Register &#x2192;</a>
     </div>
     {% endif %}
 </body>
