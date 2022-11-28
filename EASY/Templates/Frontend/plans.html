@@ -14,74 +14,18 @@
 <br>
     <H1 style="text-align:center">Select your Plan</H1>
     <p style="text-align:center">Scroll down to see the benefits</p>
-
     <div class="column">
-        <div class="columns">
-          <ul class="price">
-            {% for p in plan %}
-            {% if p.plan_name == 'Starter' %}
-            <li class="header">{{ p.plan_name }}</li>
-            <li class="grey">$ {{ p.plan_price }} / year</li>
-            <li>{{ p.number_off_areas }} Areas</li>
-            <li>{{ p.number_off_lamps }} Lamps</li>
-            <li>{{ p.number_off_functions }} Functions</li>
-            {#                <li>{{ p.plan_description }} Description</li>#}
-            <li class="grey"><a href="/register" class="button">Sign Up</a></li>
-        </ul>
-    </div>
-
-
-    <div class="columns">
-      <ul class="price">
-        {% elif p.plan_name == 'Regular' %}
-            <li class="header" style="background-color:#04AA6D">{{ p.plan_name }}</li>
-            <li class="grey">$ {{ p.plan_price }} / year</li>
-            <li>{{ p.number_off_areas }} Areas</li>
-            <li>{{ p.number_off_lamps }} Lamps</li>
-            <li>{{ p.number_off_functions }} Functions</li>
-            {#                <li>{{ p.plan_description }} Description</li>#}
-            <li class="grey"><a href="/register" class="button">Sign Up</a></li>
-      </ul>
-    </div>
-
-    <div class="columns">
-      <ul class="price">
-        {% elif p.plan_name == 'Advanced' %}
-            <li class="header">{{ p.plan_name }}</li>
-            <li class="grey">$ {{ p.plan_price }} / year</li>
-            <li>{{ p.number_off_areas }} Areas</li>
-            <li>{{ p.number_off_lamps }} Lamps</li>
-            <li>{{ p.number_off_functions }} Functions</li>
-            {#                <li>{{ p.plan_description }} Description</li>#}
-            <li class="grey"><a href="/register" class="button">Sign Up</a></li>
-        {% endif %}
+        {% for p in plan %}
+            <div class="columns">
+                <ul class="price">
+                    <li class="header"  {% if p.plan_name == 'Regular' %} style="background-color:#04AA6D" {% endif %}>{{ p.plan_name }}</li>
+                    <li class="grey">$ {{ p.plan_price }} / year</li>
+                    <li>{{ p.number_off_areas }} Areas</li>
+                    <li>{{ p.number_off_lamps }} Lamps</li>
+                    <li>{{ p.number_off_functions }} Functions</li>
+                    {#                <li>{{ p.plan_description }} Description</li>#}
+                    <li class="grey"><a href="/register" class="button">Sign Up</a></li>
+                </ul>
+            </div>
         {% endfor %}
-      </ul>
-    </div>
-</div>
-
-
-{#    {% if user.is_authenticated %}#}
-{#        <br>#}
-{#        <h1 id="welkoms-bericht">Welkom {{ user.username }}</h1>#}
-{#        <h1 id="welkoms-bericht">je kunt nu een plan selecteren</h1>#}
-{#        <div class="login-box">#}
-{#        <br>#}
-{#        <form method="POST" autocomplete="off">#}
-{#                {% csrf_token %}#}
-{#                {% for field in form %}#}
-{#                    {{ field }}#}
-{#                    {% for error in field.errors %}#}
-{#                        <p style="color: red">{{ error }}</p>#}
-{#                    {% endfor %}#}
-{#                {% endfor %}#}
-{#                <button type="submit" name="plan">Buy plan</button>#}
-{#            </form>#}
-{#    {% else %}#}
-{##}
-{#            <p style="color: red">{{ error }}</p>#}
-{#            <br>#}
-{#            <a href="/login" >Login &#x2192;</a>#}
-{#    </div>#}
-{#    {% endif %}#}
 </body>

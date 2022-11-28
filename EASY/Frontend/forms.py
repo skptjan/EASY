@@ -26,7 +26,9 @@ class SignUpForm(UserCreationForm):
 
 available_plans = PLANS
 
+class ProfileForm(forms.ModelForm):
+    plan = forms.ChoiceField(choices=available_plans)
+    class Meta:
+        model = User
+        fields = ('plan',)
 
-class PlansForm(forms.Form):
-
-    plan = forms.CharField(widget=forms.ChoiceField(choices=available_plans))
