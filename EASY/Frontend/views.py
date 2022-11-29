@@ -1,9 +1,8 @@
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 import os
-from .forms import SignUpForm, ProfileForm
+from .forms import SignUpForm
 from .models import *
-from django.db import transaction
 # Create your views here.
 
 
@@ -45,13 +44,13 @@ def loginView(request):
     return render(request, 'Frontend/index.html', data)
 
 
-@transaction.atomic
 def registerView(request):
     if request.method == 'POST':
         form = SignUpForm(request.POST)
-        profile = ProfileForm(request.POST)
-        if form.is_valid() and profile.is_valid():
-            form.save()
+        if form.is_valid():
+            newUser = form.save()
+            profile = Profile.objects.create(user=newUser, plan=request.POST['plan'])
+            profile.save()
             username = form.cleaned_data.get('username')
             raw_password = form.cleaned_data.get('password1')
             user = authenticate(username=username, password=raw_password)
@@ -59,12 +58,10 @@ def registerView(request):
             return redirect('/')
     else:
         form = SignUpForm()
-        profile = ProfileForm()
 
     data = {
         'page': 'registration/register.html',
         'form': form,
-        'profile': profile,
     }
 
     return render(request, 'Frontend/index.html', data)
