@@ -3,31 +3,39 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
     <title>E.A.S.Y.</title>
     <link rel="stylesheet" href="{% static 'Frontend/CSS/index.css' %}">
+    <script src="{% static 'Frontend/JS/index.js' %}"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1" charset="UTF-8">
+    <script src="https://kit.fontawesome.com/cddfe601ba.js"></script>
+
 </head>
 <body>
    <header>
        <nav class="navbar">
             <a href="/" {% if request.get_full_path == "/" %} class="active" {% endif %}><i class="fa fa-fw fa-home"></i> E.A.S.Y.</a>
             {% if not user.is_authenticated %}
-                <a href="/plans"{% if request.get_full_path == "/plans" %} class="active" {% endif %}>Plans</a>
-                <a href="/contact"{% if request.get_full_path == "/contact" %} class="active" {% endif %}><i class="fa fa-fw fa-envelope"></i> Contact</a>
-                <a href="/about-us"{% if request.get_full_path == "/about-us" %} class="active" {% endif %}>About Us</a>
+                <a href="/plans"{% if request.get_full_path == "/plans" %} class="active" {% endif %}><i class="fa-solid fa-list-ul"></i> Plans</a>
+                <a href="/contact"{% if request.get_full_path == "/contact" %} class="active" {% endif %}><i class="fa-solid fa-address-book"></i> Contact</a>
+                <a href="/about-us"{% if request.get_full_path == "/about-us" %} class="active" {% endif %}><i class="fa-solid fa-address-card"></i> About Us</a>
                 <a href="/login"{% if request.get_full_path == "/login" %} class="active" {% endif %}><i class="fa fa-fw fa-user"></i> Login</a>
-                <a href="/register"{% if request.get_full_path == "/register" %} class="active" {% endif %}>Register</a>
+                <a href="/register"{% if request.get_full_path == "/register" %} class="active" {% endif %}><i class="fa-solid fa-user-plus"></i> Register</a>
             {% else %}
-                <a href="/dashboard"{% if request.get_full_path == "/dashboard" %} class="active" {% endif %}>Dashboard</a>
-                <a href="/profile"{% if request.get_full_path == "/profile" %} class="active" {% endif %}>Profile</a>
-                <a href="/plans"{% if request.get_full_path == "/plans" %} class="active" {% endif %}>Plans</a>
+                <a href="/dashboard"{% if request.get_full_path == "/dashboard" %} class="active" {% endif %}><i class="fa-solid fa-chart-line"></i> Dashboard</a>
+                <a href="/profile"{% if request.get_full_path == "/profile" %} class="active" {% endif %}><i class="fa-solid fa-user"></i> Profile</a>
+                <a href="/plans"{% if request.get_full_path == "/plans" %} class="active" {% endif %}><i class="fa-solid fa-list-ul"></i> Plans</a>
 
-                {% if user.is_superuser %} <a href="/admin">Admin</a> {% endif %}
+                {% if user.is_superuser %} <a href="/admin"><i class="fa-solid fa-database"></i> Admin</a> {% endif %}
 
-                <a href="/logout"{% if request.get_full_path == "/logout" %} class="active" {% endif %}>Logout</a>
+                <a href="/logout"{% if request.get_full_path == "/logout" %} class="active" {% endif %}><i class="fa-solid fa-right-from-bracket"></i> Logout</a>
             {% endif  %}
 
+            <label class="switch">
+                <input type="checkbox" onclick="DarkMode()">
+                <span class="slider round"></span>
+            </label>
         </nav>
+
    </header>
 
     <main>
@@ -38,4 +46,5 @@
 
     </footer>
 </body>
+
 </html>
