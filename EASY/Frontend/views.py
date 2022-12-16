@@ -1,9 +1,9 @@
 from urllib import response
-
+from django.core.mail import send_mail
 from django.shortcuts import render, redirect
 from django.contrib.auth import login, logout, authenticate
 import os
-from .forms import SignUpForm
+from .forms import SignUpForm, LampForm
 from .models import *
 # Create your views here.
 
@@ -75,7 +75,18 @@ def logoutView(request):
 
 
 def dashboardView(request):
+    Lamps = Lamp.objects.all()
+    form = LampForm()
+
+    if request.method == 'POST':
+        form = LampForm(request.POST)
+        if form.is_valid():
+            form.save()
+        return redirect('/dashboard')
+
     data = {
+        'Lamps': Lamps,
+        'form': form,
         'page': 'Frontend/dashboard.html',
     }
 
@@ -98,12 +109,53 @@ def aboutUsView(request):
     return render(request, 'Frontend/index.html', data)
 
 
-def contactView(request):
-    data = {
-        'page': 'Frontend/contact.html',
-    }
+def makeMail(name, mail, sub, msg):
+    data = {'name': name, 'mail': mail, 'sub': sub, 'msg': msg}
+    MSG = '''
+Webmail van:    {}
+Mail adres :    {}
+Message: 
+{}
+    '''.format(data['name'], data['mail'], data['msg'])
+    contactForm = contact(name=name, email=mail, bericht=msg)
+    contactForm.save()
 
-    return render(request, 'Frontend/index.html', data)
+    send_mail(data['sub'], MSG, 'webmail@', ['info@'],
+              fail_silently=False, auth_user='webmail@', auth_password='')
+
+
+def makeMailClient(mail):
+    MSG = '''
+Bedankt voor het invullen van ons contact formulier! Hierbij is bevestigd dat
+wij uw mail ontvangen hebben. Wij zullen zo spoedig mogelijk contact met
+u opnemen!
+Vriendelijke groet,
+(Naam)
+'''
+    send_mail('Bevestiging WebForm (Naam)', MSG, 'noreply@', [mail],
+              fail_silently=False, auth_user='noreply@', auth_password='')
+
+def contactView(request):
+    if request.method == 'POST':
+        name = request.POST.get('name')
+        email = request.POST.get('email')
+        bericht = request.POST.get('bericht')
+        makeMail(name, email, 'Contactformulier (Naam)', bericht)
+        makeMailClient(email)
+
+        data = {
+            'page': 'Frontend/contact-correct.html',
+            'name': name,
+        }
+        return render(request, 'Frontend/index.html', data)
+
+    else:
+
+        data = {
+            'page': 'Frontend/contact.html',
+        }
+
+        return render(request, 'Frontend/index.html', data)
 
 
 def plansView(request):

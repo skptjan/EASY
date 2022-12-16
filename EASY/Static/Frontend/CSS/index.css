@@ -11,6 +11,10 @@
         color: white;
     }
 
+    .dark-mode a {
+        color: white;
+    }
+
     .navbar{
         background-color: #001eb4;
         color: white;

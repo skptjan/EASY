@@ -1,14 +1,122 @@
 {% load static %}
 
-
-<head>
-
-    <title>Contact</title>
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="stylesheet" href="{% static 'Frontend/CSS/contact.css' %}" />
+    <title>Contact</title>
+  </head>
+  <main>
+    {# volledige breedte google maps locatie #}
+    <div>
+      <iframe
+        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2452.7126977476496!2d4.321865782353182!3d52.06675480017549!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x47c5b6e175fe3619%3A0x9d1994a880751d7a!2sDe%20Haagse%20Hogeschool!5e0!3m2!1snl!2snl!4v1671215573143!5m2!1snl!2snl"
+        width="400"
+        height="250"
+        style="border: 0"
+        allowfullscreen=""
+        loading="lazy"
+      ></iframe>
+    </div>
 
-</head>
+    <div class="container">
+      {# div met socials en locatie #}
+      <div class="div-left">
+        <div class="div-left-1">
+          <h1>Neem persoonlijk contact op</h1>
+          <br />
+          <a
+            href="https://www.google.nl/maps/place/De+Haagse+Hogeschool/@52.0667548,4.3218658,17z/data=!4m5!3m4!1s0x47c5b6e175fe3619:0x9d1994a880751d7a!8m2!3d52.0670747!4d4.323974"
+            class="fas fa-map-marker-alt"
+          >
+            Johanna Westerdijkplein 75, 2521 EN Den Haag
+          </a>
+          <i class="fas fa-phone-square-alt">06-12345678</i>
+          <a href="mailto:info@" class="fas fa-envelope">
+            Info@
+          </a>
+        </div>
 
+        <div class="div-left-2">
+          <h1>Social media</h1>
+          <div class="inner-div-left-2">
+            <span>
+              <a
+                class="socials-notActive"
+{#                href=""#}
+{#                target="_blank"#}
+              >
+                <i class="fab fa-snapchat fa-3x"></i>
+              </a>
+            </span>
+            <span>
+              <a
+                class="socials-notActive"
+{#                href=""#}
+{#                target="_blank"#}
+              >
+                <i class="fab fa-instagram fa-3x"></i>
+              </a>
+            </span>
+            <span>
+              <a class="socials-notActive">
+                <i class="fab fa-twitter fa-3x"></i>
+              </a>
+            </span>
+            <span>
+              <a class="socials-notActive">
+                <i class="fab fa-facebook fa-3x"></i>
+              </a>
+            </span>
+            <span>
+              <a class="socials-notActive">
+                <i class="fab fa-linkedin fa-3x"></i>
+              </a>
+            </span>
+          </div>
+        </div>
+      </div>
 
-<body>
-    <H1>Contact</H1>
-</body>
+      {# div met contact form, voor een bericht of vraag. #}
+      <div class="div-right">
+        <form method="post">
+          <h1>Of verstuur direct een bericht.</h1>
+          <br />
+          {% csrf_token %}
+          <label>Naam</label>
+          <input
+            type="text"
+            id="name"
+            name="name"
+            placeholder="Your name.."
+            required
+            autocomplete="off"
+          />
+
+          <label>E-mail</label>
+          <input
+            type="text"
+            id="email"
+            name="email"
+            placeholder="Your e-mail.."
+            required
+            autocomplete="off"
+          />
+
+          <label>Bericht</label>
+          <textarea
+            id="bericht"
+            name="bericht"
+            placeholder="Write something.."
+            required
+            autocomplete="off"
+          ></textarea>
+
+          <input type="submit" value="Submit" />
+        </form>
+      </div>
+    </div>
+  </main>
+</html>

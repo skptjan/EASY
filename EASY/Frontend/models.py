@@ -46,3 +46,30 @@ class Plan(models.Model):
 
     class Meta:
         verbose_name_plural = "Plans"
+
+
+class contact(models.Model):
+    name = models.CharField(max_length=200, default=" ")
+    email = models.EmailField(max_length=200, default=" ")
+    bericht = models.TextField(max_length=200, default=" ")
+
+    def __str__(self):
+        return self.name
+
+    class Meta:
+        verbose_name_plural = "Contact"
+
+
+class Lamp(models.Model):
+    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=User)
+    lamp_name = models.CharField(max_length=200, default="Lamp name")
+    time_set_on = models.TimeField(auto_now=False, auto_now_add=False, default="00:00:00")
+    time_set_off = models.TimeField(auto_now=False, auto_now_add=False, default="00:00:00")
+    # datetime_set_on = models.DateTimeField(auto_now=False, auto_now_add=False, default="2020-01-01 00:00:00")
+    # datetime_set_off = models.DateTimeField(auto_now=False, auto_now_add=False, default="2020-01-01 00:00:00")
+
+    def __str__(self):
+        return self.lamp_name
+
+    class Meta:
+        verbose_name_plural = "User Lamps"
