@@ -15,11 +15,15 @@
         <form method="POST" action="/dashboard">
         {% csrf_token %}
             {{ form }}
+            <p style="color: red">{{ error }}</p>
+
             <input type="submit" value="Submit" name="Add lamp">
         </form>
 
         {% for l in Lamps %}
             <div>
+                <a href="{% url 'updateLamp' l.id %}">Update</a>
+                <a href="{% url 'deleteLamp' l.id %}">Delete</a>
                 <h4>Lamp Name: {{ l.lamp_name }} </h4>
                 <p>Time set lamp on: {{ l.time_set_on }}</p>
                 <p>time set lamp off: {{ l.time_set_off }} </p>

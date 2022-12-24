@@ -1,0 +1,33 @@
+{% load static %}
+
+<head>
+
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="{% static 'Frontend/CSS/dashboard.css' %}">
+
+</head>
+
+
+<body>
+    {% if user.is_authenticated %}
+       <H1>Update Lamp</H1>
+
+        <form method="POST" action="">
+        {% csrf_token %}
+            {{ form }}
+            <input type="submit" value="Submit" name="Update">
+        </form>
+
+{#        {% for l in Lamps %}#}
+{#            <div>#}
+{#                <h4>Lamp Name: {{ l.lamp_name }} </h4>#}
+{#                <p>Time set lamp on: {{ l.time_set_on }}</p>#}
+{#                <p>time set lamp off: {{ l.time_set_off }} </p>#}
+{#                <br>#}
+{#            </div>#}
+{#        {% endfor %}#}
+
+    {% else %}
+        <H1> U bent niet bevoegd hier te zijn, u moet eerst <a href="/login">inloggen</a>></H1>
+    {% endif %}
+</body>

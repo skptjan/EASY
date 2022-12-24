@@ -82,6 +82,14 @@ def dashboardView(request):
         form = LampForm(request.POST)
         if form.is_valid():
             form.save()
+        else:
+            data = {
+                'page': 'Frontend/dashboard.html',
+                'Lamps': Lamps,
+                'form': form,
+                'error': 'Form is not valid',
+            }
+            return render(request, 'Frontend/index.html', data)
         return redirect('/dashboard')
 
     data = {
@@ -90,6 +98,36 @@ def dashboardView(request):
         'page': 'Frontend/dashboard.html',
     }
 
+    return render(request, 'Frontend/index.html', data)
+
+
+def updateLamp(request, pk):
+    lamp = Lamp.objects.get(id=pk)
+    form = LampForm(instance=lamp)
+
+    if request.method == 'POST':
+        form = LampForm(request.POST, instance=lamp)
+        if form.is_valid():
+            form.save()
+            return redirect('/dashboard')
+
+    data = {
+        'form': form,
+        'page': 'Frontend/update-lamp.html',
+    }
+
+    return render(request, 'Frontend/index.html', data)
+
+
+def deleteLamp(request, pk):
+    lamp = Lamp.objects.get(id=pk)
+    if request.method == 'POST':
+        lamp.delete()
+        return redirect('/dashboard')
+    data = {
+        'lamp': lamp,
+        'page': 'Frontend/delete-lamp.html',
+    }
     return render(request, 'Frontend/index.html', data)
 
 
