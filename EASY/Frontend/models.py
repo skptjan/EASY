@@ -1,3 +1,5 @@
+import time
+
 from django.db import models, transaction
 from django.forms import ModelForm
 from django.contrib.auth.models import User
@@ -61,7 +63,7 @@ class contact(models.Model):
 
 
 class Lamp(models.Model):
-    # user = models.ForeignKey(User, on_delete=models.CASCADE, default=User)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, unique=False, default=User)
     lamp_name = models.CharField(max_length=200, default="Lamp name")
     time_set_on = models.TimeField(auto_now=False, auto_now_add=False, default="00:00:00")
     time_set_off = models.TimeField(auto_now=False, auto_now_add=False, default="00:00:00")
@@ -73,3 +75,14 @@ class Lamp(models.Model):
 
     class Meta:
         verbose_name_plural = "User Lamps"
+
+class LampLog(models.Model):
+    lamp = models.ForeignKey(Lamp, on_delete=models.PROTECT, unique=False, default=Lamp)
+    time = models.TimeField(auto_now=False, auto_now_add=False)
+    on = models.BooleanField()
+
+    def __str__(self):
+        return ("Time: %s, IsOn: %s" % (self.time.strftime("%m/%d/%Y, %H:%M:%S"), self.on))
+
+    class Meta:
+        verbose_name_plural = "Lamp Log"

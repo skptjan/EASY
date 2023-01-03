@@ -81,7 +81,9 @@ def dashboardView(request):
     if request.method == 'POST':
         form = LampForm(request.POST)
         if form.is_valid():
-            form.save()
+            newLamp = form.save(commit=False)
+            newLamp.user = request.user
+            newLamp.save()
         else:
             data = {
                 'page': 'Frontend/dashboard.html',
