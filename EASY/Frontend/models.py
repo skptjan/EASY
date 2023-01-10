@@ -30,7 +30,7 @@ class Profile(models.Model):
     #     instance.profile.save()
 
     def __str__(self):
-        return f"{self.user.username}'s profile, {self.plan}"
+        return f"{self.user.username}'s profile, userid: {self.user.id}, id: {self.id}, {self.plan}"
     class Meta:
         verbose_name_plural = "Profiles"
 
@@ -77,12 +77,16 @@ class Lamp(models.Model):
         verbose_name_plural = "User Lamps"
 
 class LampLog(models.Model):
-    lamp = models.ForeignKey(Lamp, on_delete=models.PROTECT, unique=False, default=Lamp)
-    time = models.TimeField(auto_now=False, auto_now_add=False)
+    user = models.ForeignKey(User, on_delete=models.PROTECT, null=True)
+    time = models.DateTimeField(auto_now=False, auto_now_add=False)
     on = models.BooleanField()
 
     def __str__(self):
-        return ("Time: %s, IsOn: %s" % (self.time.strftime("%m/%d/%Y, %H:%M:%S"), self.on))
+        notNone = self.time
+        date = None
+        if notNone:
+            date = notNone.strftime("%d/%m/%Y, %H:%M:%S")
+        return ("id: %s, user: %s, DateTime: %s, IsOn: %s" % (self.id, self.user, date if notNone else "", self.on))
 
     class Meta:
         verbose_name_plural = "Lamp Log"

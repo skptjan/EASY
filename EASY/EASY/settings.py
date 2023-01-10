@@ -105,7 +105,7 @@ AUTH_PASSWORD_VALIDATORS = [
 
 LANGUAGE_CODE = 'nl-NL'
 
-TIME_ZONE = 'GMT'
+TIME_ZONE = 'Europe/Amsterdam'
 
 USE_I18N = True
 
