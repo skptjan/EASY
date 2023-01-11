@@ -1,6 +1,7 @@
 import serial
 import time
 import atexit
+import sqltest
 # serial port on raspberry pi will probably be /dev/ttyACM0
 
 def microbit():
@@ -66,6 +67,10 @@ while True:
         if mS is not None:
                 #serial_write(mS)
                 data = serial_read(mS, "ms")
+                if data is not None:
+                        if ":" in data:
+                                customer_id, light_level = data.split(":")
+                                sqltest.execute(sqltest.db, "INSERT INTO %s%s VALUES%s" % (sqltest.Tables.LampLog, sqltest.TablesColumn.LampLog, sqltest.LampLogMapper(customer_id, int(light_level) < 50)))
 
         if aS is not None:
                 if data is not None:

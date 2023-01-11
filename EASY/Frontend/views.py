@@ -75,28 +75,34 @@ def logoutView(request):
 
 
 def dashboardView(request):
-    Lamps = Lamp.objects.all()
-    form = LampForm()
-
-    if request.method == 'POST':
-        form = LampForm(request.POST)
-        if form.is_valid():
-            newLamp = form.save(commit=False)
-            newLamp.user = request.user
-            newLamp.save()
-        else:
-            data = {
-                'page': 'Frontend/dashboard.html',
-                'Lamps': Lamps,
-                'form': form,
-                'error': 'Form is not valid',
-            }
-            return render(request, 'Frontend/index.html', data)
-        return redirect('/dashboard')
+    # Lamps = Lamp.objects.all()
+    # form = LampForm()
+    #
+    # if request.method == 'POST':
+    #     form = LampForm(request.POST)
+    #     if form.is_valid():
+    #         newLamp = form.save(commit=False)
+    #         newLamp.user = request.user
+    #         newLamp.save()
+    #     else:
+    #         data = {
+    #             'page': 'Frontend/dashboard.html',
+    #             'Lamps': Lamps,
+    #             'form': form,
+    #             'error': 'Form is not valid',
+    #         }
+    #         return render(request, 'Frontend/index.html', data)
+    #     return redirect('/dashboard')
+    #
+    # data = {
+    #     'Lamps': Lamps,
+    #     'form': form,
+    #     'page': 'Frontend/dashboard.html',
+    # }
+    lamp_logs = LampLog.objects.all().order_by('-time')
 
     data = {
-        'Lamps': Lamps,
-        'form': form,
+        'LampLogs': lamp_logs,
         'page': 'Frontend/dashboard.html',
     }
 
