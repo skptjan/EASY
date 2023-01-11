@@ -99,7 +99,7 @@ def dashboardView(request):
     #     'form': form,
     #     'page': 'Frontend/dashboard.html',
     # }
-    lamp_logs = LampLog.objects.all().order_by('-time')
+    lamp_logs = LampLog.objects.filter(user=request.user).order_by('-time')
 
     data = {
         'LampLogs': lamp_logs,
