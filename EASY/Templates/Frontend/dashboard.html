@@ -30,14 +30,16 @@
 {#        {% endfor %}#}
         <table>
             <tr>
+                <th>ID</th>
                 <th>Datum</th>
                 <th>Tijd</th>
                 <th>Status</th>
             </tr>
         {% for l in LampLogs %}
             <tr>
+                <td>{{ l.id }}</td>
                 <td>{{ l.time.date }}</td>
-                <td>{{ l.time.time }}</td>
+                <td>{{ l.time.time|time:"H:i:s" }}</td>
                 <td>{% if l.on == True %}Aan{% else %}Uit{% endif %}</td>
             </tr>
         {% endfor %}

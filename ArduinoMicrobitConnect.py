@@ -70,16 +70,23 @@ while True:
                 if data is not None:
                         if ":" in data:
                                 customer_id, light_level = data.split(":")
-                                sqltest.execute(sqltest.db, "INSERT INTO %s%s VALUES%s" % (sqltest.Tables.LampLog, sqltest.TablesColumn.LampLog, sqltest.LampLogMapper(customer_id, int(light_level) < 50)))
+                                try:
+                                        sqltest.execute(sqltest.db, "INSERT INTO %s%s VALUES%s" % (sqltest.Tables.LampLog, sqltest.TablesColumn.LampLog, sqltest.LampLogMapper(customer_id, int(light_level) > 50)))
+                                except ValueError:
+                                        print("woopsie")
 
         if aS is not None:
                 if data is not None:
-                        try:
-                                toggle = bool(int(data))                        
-                                serial_write(aS, toggle)
-                                data = None
-                        except ValueError:
-                                print("woopsie")
+                        if '1' in data or '0' in data or ":" in data:
+                                try:
+                                        if ":" in data:
+                                                toggle = not bool(int(data.split(":")[1]))
+                                        else:
+                                                toggle = bool(int(data))
+                                        serial_write(aS, toggle)
+                                        data = None
+                                except ValueError:
+                                        print("woopsie")
                 serial_read(aS, "as")
         
         #toggle = not toggle
