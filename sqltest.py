@@ -34,3 +34,17 @@ def execute(db_file, query):
         if conn:
             conn.close()
 
+def get(db_file, query):
+    """ create a database connection to a SQLite database """
+    conn = None
+    try:
+        conn = sqlite3.connect(db_file)
+        c = conn.cursor()
+        # print(query)
+        res = c.execute(query)
+        return res.fetchone()
+    except Error as e:
+        print(e)
+    finally:
+        if conn:
+            conn.close()
