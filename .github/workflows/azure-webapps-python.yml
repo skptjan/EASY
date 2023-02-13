@@ -52,7 +52,8 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r EASY/requirements.txt
-        script: echo "${{secrets.AZURE_CREDENTIALS }}"
+
+      - script: echo "${{secrets.AZURE_CREDENTIALS }}"
 
   login:
     runs-on: ubuntu-latest
