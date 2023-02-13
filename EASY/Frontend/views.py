@@ -6,6 +6,7 @@ import os
 from .forms import SignUpForm, LampForm
 from .models import *
 # Create your views here.
+from django.views.decorators.csrf import csrf_protect
 
 
 def indexView(request):
@@ -15,7 +16,7 @@ def indexView(request):
 
     return render(request, 'Frontend/index.html', data)
 
-
+@csrf_protect
 def loginView(request):
     if request.method == 'POST' and 'login' in request.POST:
         username = request.POST.get('username')
