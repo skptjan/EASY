@@ -12,6 +12,7 @@ from django.views.decorators.csrf import csrf_protect
 def indexView(request):
     data = {
         'page': 'Frontend/home.html',
+        'time': datetime.now()
     }
 
     return render(request, 'Frontend/index.html', data)
