@@ -7,11 +7,9 @@ from .forms import SignUpForm, LampForm
 from .models import *
 # Create your views here.
 from django.views.decorators.csrf import csrf_protect
-from datetime import datetime
 def indexView(request):
     data = {
         'page': 'Frontend/home.html',
-        'time': datetime.now(),
     }
 
     return render(request, 'Frontend/index.html', data)
