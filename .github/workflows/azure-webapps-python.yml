@@ -53,12 +53,12 @@ jobs:
       - name: Install dependencies
         run: pip install -r EASY/requirements.txt
 
-      - script: echo "${{secrets.AZURE_CREDENTIALS }}"
-
   login:
     runs-on: ubuntu-latest
     needs: build
     steps:
+      - name: Print cred
+        run: echo "${{ secrets.AZURE_CREDENTIALS }}"
       - name: Install Azure CLI
         run: |
           sudo apt-get update
