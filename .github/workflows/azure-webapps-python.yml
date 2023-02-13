@@ -23,7 +23,6 @@ name: Build and deploy Python app to Azure Web App
 env:
   AZURE_WEBAPP_NAME: easysolutions  # set this to the name of your Azure Web App
   PYTHON_VERSION: '3.11'              # set this to the Python version to use
-  AZURE_CREDENTIALS: ${{ secrets.AZURE_CREDENTIALS }}
 
 on:
   push:
@@ -61,7 +60,7 @@ jobs:
       - name: 'Login to azure'
         uses: azure/login@v1
         with:
-          creds: ${{ env.AZURE_CREDENTIALS }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
   deploy:
     permissions:
