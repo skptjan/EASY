@@ -29,6 +29,8 @@ jobs:
     with:
      python-version: ${{ env.PYTHON_VERSION }}
   # install dependencies
+  - name: Collect static
+    run: python EASY/manage.py collectstatic
   - name: python install
     working-directory: ${{ env.WORKING_DIRECTORY }}
     run: |
@@ -37,8 +39,6 @@ jobs:
      source antenv/bin/activate
      pip install setuptools
      pip install -r requirements.txt
-  - name: Collect static
-    run: python EASY/manage.py collectstatic
   # Azure login
   - uses: azure/login@v1
     with:
