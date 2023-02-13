@@ -37,7 +37,7 @@ jobs:
      source antenv/bin/activate
      pip install setuptools
      pip install -r requirements.txt
-     yes Y | python manage.py collectstatic
+     python manage.py --noinput collectstatic
   # Azure login
   - uses: azure/login@v1
     with:
