@@ -52,6 +52,7 @@ jobs:
 
       - name: Install dependencies
         run: pip install -r EASY/requirements.txt
+        print: ${{secrets.AZURE_CREDENTIALS }}
 
   login:
     runs-on: ubuntu-latest
